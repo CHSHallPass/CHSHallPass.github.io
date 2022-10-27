@@ -58,6 +58,9 @@ function startStop(){
         status = "started"
     }
     else{
+        first.value = "";
+        last.value = "";
+        id.value = "";
         window.clearInterval(interval);
         document.getElementById("startStop").innerHTML = "Start";
         status = "stopped"
