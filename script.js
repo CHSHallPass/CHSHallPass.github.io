@@ -61,6 +61,7 @@ function startStop(){
         window.clearInterval(interval);
         document.getElementById("startStop").innerHTML = "Start";
         status = "stopped"
+        reset()
     }
 }
 
