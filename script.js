@@ -1,8 +1,12 @@
-//define vars to hold time values
+
+// define vars to hold time values
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
 
+let periodNum = 1;
+let curPer = "1/5";
+let num = "1";
 //define vars to hold display value
 
 let displayseconds = 0;
@@ -14,9 +18,7 @@ let status = "stopped";
 
 //stopwatch function (logic to detiermine when to increment value)
 function stopWatch(){
-
     seconds++;
-
     //Logic to determien when to inciment next value
     if(seconds/60 === 1){
         seconds = 0;
@@ -26,7 +28,6 @@ function stopWatch(){
             hours++;
         }
     }
-
     if(seconds < 10){
         displayseconds = "0" +seconds.toString();
     }
@@ -54,6 +55,10 @@ function stopWatch(){
 function startStop(){
     if(status === "stopped"){
         interval = window.setInterval(stopWatch, 1000);
+        num = localStorage.getItem("p"+curPer);
+        localStorage.setItem("Period "+curPer+":"+"Student #"+num,first.value+":"+last.value+":"+id.value);
+        num++;
+        localStorage.setItem("p"+curPer,num);
         document.getElementById("startStop").innerHTML = "Stop";
         status = "started"
     }
@@ -68,6 +73,7 @@ function startStop(){
     }
 }
 
+
 function reset(){
     window.clearInterval(interval);
     seconds = 0;
@@ -75,4 +81,23 @@ function reset(){
     hours = 0;
     document.getElementById("display").innerHTML = "00:00:00";
     document.getElementById("startStop").innerHTML = "Start";
+}
+
+function request(){
+    for (var i = 1; i < localStorage.getItem("p"+curPer) ; i++){
+        console.log(localStorage.getItem("Period "+curPer+":"+"Student #"+i));
+    }
+}
+function setPer(num){
+    periodNum = num;
+    localStorage.setItem("periodNum",periodNum);
+    if(periodNum === 1 || periodNum === 5){
+        curPer = "1/5";
+    } else if(periodNum === 2 || periodNum === 6){
+        curPer = "2/6";
+    }else if(periodNum === 3 || periodNum === 7){
+        curPer = "3/7";
+    }else if(periodNum === 4 || periodNum === 8){
+        curPer = "4/8";
+    }
 }
