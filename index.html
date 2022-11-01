@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="./images/C.png">
     <title>CHS Bathroom Pass</title>
 
     <link rel="stylesheet" href="styles.css">
@@ -23,12 +24,13 @@
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
             <div class="dropdown" style="float:right;">
-                <button class="dropbtn">Teacher Controls</button>
+                <button onclick=sub()  class="dropbtn">Teacher Controls</button>
                 <div class="dropdown-content">
                     <a href="#" onclick="setPer(1)">Period 1/5</a>
                     <a href="#" onclick="setPer(2)">Period 2/6</a>
                     <a href="#" onclick="setPer(3)">Period 3/7</a>
                     <a href="#" onclick="setPer(4)">Period 4/8</a>
+                    <a href="#" onclick="request()">Request Data</a>
                 </div>
             </div>
         </div>
@@ -44,7 +46,6 @@
             <input id="last" class="input" type="text" placeholder="Last Name:">
             <input id="id" class="input" type="password" placeholder="Id Number:" style="width: 150px" >
             <button id="startStop" onclick="startStop()">Start</button>
-            <button id="request" onclick="request()">Request</button>
         </div>
     </div>
 

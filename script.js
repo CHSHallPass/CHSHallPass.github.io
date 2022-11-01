@@ -16,6 +16,9 @@ let displayhours = 0;
 let interval = null;
 let status = "stopped";
 
+const xhr = new XMLHttpRequest();
+let serpass = "apsdoifhjwqebnboijsdaf";
+
 //stopwatch function (logic to detiermine when to increment value)
 function stopWatch(){
     seconds++;
@@ -87,6 +90,7 @@ function request(){
     for (var i = 1; i < localStorage.getItem("p"+curPer) ; i++){
         console.log(localStorage.getItem("Period "+curPer+":"+"Student #"+i));
     }
+    $(".dropdown:hover .dropdown-content").css( "display","none")
 }
 function setPer(num){
     periodNum = num;
@@ -99,5 +103,29 @@ function setPer(num){
         curPer = "3/7";
     }else if(periodNum === 4 || periodNum === 8){
         curPer = "4/8";
+    }
+    $(".dropdown:hover .dropdown-content").css( "display","none")
+}
+
+function sub(){
+    var pass = window.prompt("Enter Teacher Password",)
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                serpass = (xhr.responseText);
+            }
+            if(xhr.status == 404){
+                console.log("File not found")
+            }
+        }
+    }
+    xhr.open('get','data.txt',false);
+    xhr.send();
+    serpass = atob(serpass);
+    var allPass = serpass.split(':');
+    for(let i = 0; i < allPass.length; i++){
+        if(pass == allPass[i]){
+            $(".dropdown:hover .dropdown-content").css( "display","block")
+        }
     }
 }
