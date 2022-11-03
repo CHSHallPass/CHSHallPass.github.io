@@ -15,10 +15,12 @@ let displayhours = 0;
 
 let interval = null;
 let status = "stopped";
+let data = '';
 
 const xhr = new XMLHttpRequest();
 let serpass = "apsdoifhjwqebnboijsdaf";
 
+console.log(btoa(""));
 //stopwatch function (logic to detiermine when to increment value)
 function stopWatch(){
     seconds++;
@@ -66,6 +68,9 @@ function startStop(){
         status = "started"
     }
     else{
+        val = localStorage.getItem("p"+curPer);
+        settime = localStorage.getItem("Period "+curPer+":"+"Student #"+(val-1));
+        localStorage.setItem("Period "+curPer+":"+"Student #"+(val-1),settime+":"+displayhours + "h" + displayminutes + "m" + displayseconds + "s");
         first.value = "";
         last.value = "";
         id.value = "";
@@ -86,11 +91,46 @@ function reset(){
     document.getElementById("startStop").innerHTML = "Start";
 }
 
-function request(){
-    for (var i = 1; i < localStorage.getItem("p"+curPer) ; i++){
-        console.log(localStorage.getItem("Period "+curPer+":"+"Student #"+i));
+function request(num){
+    if(num === 1 || num === 5){
+        curPer = "1/5";
+    } else if(num === 2 || num === 6){
+        curPer = "2/6";
+    }else if(num === 3 || num === 7){
+        curPer = "3/7";
+    }else if(num === 4 || num === 8){
+        curPer = "4/8";
     }
-    $(".dropdown:hover .dropdown-content").css( "display","none")
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+        Title: "SheetJS Tutorial",
+        Subject: "Test",
+        Author: "Red Stapler",
+        CreatedDate: new Date(2017,12,19)
+    };
+    wb.SheetNames.push("Test Sheet");
+    var ws_data = [["First Name","Last Name","Student Id","Amount of Time"]];
+    for (var i = 1; i < localStorage.getItem("p"+curPer) ; i++){
+        data = localStorage.getItem("Period "+curPer+":"+"Student #"+i);
+        data = data.split(':');
+        console.log(data)
+        ws_data.push([data[0],data[1],data[2],data[3]]);
+    }
+
+    var ws = XLSX.utils.aoa_to_sheet(ws_data);
+    wb.Sheets["Test Sheet"] = ws;
+
+    var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+    function s2ab(s) {
+
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+
+    }
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
+    
 }
 function setPer(num){
     periodNum = num;
@@ -104,10 +144,29 @@ function setPer(num){
     }else if(periodNum === 4 || periodNum === 8){
         curPer = "4/8";
     }
-    $(".dropdown:hover .dropdown-content").css( "display","none")
+}
+function deleteData(){
+    for (var i = 1; i < 5; i++){
+        if(i === 1 || periodNum === 5){
+            curPer = "1/5";
+        } else if(i === 2 || periodNum === 6){
+            curPer = "2/6";
+        }else if(i === 3 || periodNum === 7){
+            curPer = "3/7";
+        }else if(i === 4 || periodNum === 8){
+            curPer = "4/8";
+        }
+        for (var r = 1; r < localStorage.getItem("p"+curPer) ; r++){
+            localStorage.removeItem("Period "+curPer+":"+"Student #"+r);
+        }
+        localStorage.setItem("p1/5","1");
+        localStorage.setItem("p2/6","1");
+        localStorage.setItem("p3/7","1");
+        localStorage.setItem("p4/8","1");
+    }
 }
 
-function sub(){
+function sub(num){
     var pass = window.prompt("Enter Teacher Password",)
     xhr.onreadystatechange = function (){
         if(xhr.readyState == 4){
@@ -125,7 +184,11 @@ function sub(){
     var allPass = serpass.split(':');
     for(let i = 0; i < allPass.length; i++){
         if(pass == allPass[i]){
-            $(".dropdown:hover .dropdown-content").css( "display","block")
+            if (num == 20){
+                deleteData();
+            } else{
+                setPer(num);
+            }
         }
     }
 }

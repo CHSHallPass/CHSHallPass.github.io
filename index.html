@@ -10,32 +10,43 @@
 
     <link rel="stylesheet" href="styles.css">
     <script src="jquery.min.js" type="text/javascript"></script>
+    <script lang="javascript" src="xlsx.full.min.js"></script>
+    <script lang="javascript" src="FileSaver.min.js"></script>
     <script type ="text/javascript" src="script.js"></script>
 
 </head>
 <body>
-
     <div class="container">
-
         <div class="topnav">
-            <a><img src="images/C.png" id="logo" width="180" height=auto></a>
-            <a href="#home"><n>Home</n></a>
-            <a href="#news">News</a>
+            <a><img href="./index.html" src="images/C.png" class='disabled' width="100" height=auto></a>
+            <a href="./index.html"><n>Home</n></a>
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
-            <div class="dropdown" style="float:right;">
-                <button onclick=sub()  class="dropbtn">Teacher Controls</button>
-                <div class="dropdown-content">
-                    <a href="#" onclick="setPer(1)">Period 1/5</a>
-                    <a href="#" onclick="setPer(2)">Period 2/6</a>
-                    <a href="#" onclick="setPer(3)">Period 3/7</a>
-                    <a href="#" onclick="setPer(4)">Period 4/8</a>
-                    <a href="#" onclick="request()">Request Data</a>
-                </div>
-            </div>
+            <ul class="top-level-menu">
+                <li><a onclick="" href="#">Teacher Controls</a>
+                    <ul class="second-level-menu">
+                        <li><a href="#">Change Period</a>
+                            <ul class="third-level-menu">
+                                <li><a href="#" onclick="sub(1)">Period 1/5</a></li>
+                                <li><a href="#" onclick="sub(2)">Period 2/6</a></li>
+                                <li><a href="#" onclick="sub(3)">Period 3/7</a></li>
+                                <li><a href="#" onclick="sub(4)">Period 4/8</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Request Data</a>
+                            <ul class="third-level-menu">
+                                <li><a href="#" onclick="request(1)">Period 1/5</a></li>
+                                <li><a href="#" onclick="request(2)">Period 2/6</a></li>
+                                <li><a href="#" onclick="request(3)">Period 3/7</a></li>
+                                <li><a href="#" onclick="request(4)">Period 4/8</a></li>
+                            </ul>
+
+                        </li>
+                        <li><a href="#" onclick="sub(20)" style="font-weight: bold;color: #a40e26">Delete Data</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-
-
 
         <div class="time" id="display">
             00:00:00

@@ -8,7 +8,6 @@
 body{
     background: #007A33;
 }
-
 .topnav {
     overflow: hidden;
     background-color: #007A33;
@@ -22,8 +21,8 @@ body{
     font-family: 'Poppins',sans-serif;
     text-decoration: none;
     font-size: 17px;
+    border-radius: 4px;
 }
-
 .topnav a:hover {
     background-color: #ddd;
     color: #000;
@@ -73,40 +72,80 @@ body{
     cursor: pointer;
     box-shadow: 10px 10px 20px rgba(0,0,0,0.09);
 }
-.dropbtn {
-    background-color: #007A33;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
+/* Menu Styles */
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
+.third-level-menu
+{
+    float: right;
     position: absolute;
-    height: auto;
-    background-color: #fff;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    top: 0;
+    left: -150px;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
 }
 
-.dropdown-content a {
-    font-size: 15px;
-    color: black;
-    padding: 1px 5px;
-    width: 100%;
+.third-level-menu > li
+{
+    height: 30px;
+    background: #007A33;
+}
+.third-level-menu > li:hover { background: #007A33; }
+
+.second-level-menu
+{
+    float: right;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.second-level-menu > li
+{
+    position: relative;
+    height: 30px;
+    background: #007A33;
+}
+.second-level-menu > li:hover { background: #007A33; }
+
+.top-level-menu
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-level-menu > li
+{
+    position: relative;
+    float: right;
+    height: 30px;
+    width: 150px;
+    background: #007A33;
+}
+.top-level-menu > li:hover { background: #007A33; }
+.top-level-menu li:hover > ul
+{
+    display: inline;
+}
+
+.top-level-menu a
+{
+    border-radius: 4px;
+    font-size: 14px;
+    color: #FFFFFF;
     text-decoration: none;
+    margin-right: 10px;
+    padding: 0 0 0 10px;
+    float: right;
     display: block;
+    line-height: 30px;
 }
-
-.dropdown-content a:hover {background-color: #f1f1f1;}
-.dropdown:hover .dropdown-content {display: none;}
-.dropdown:hover .dropbtn {background-color: #007A33;}
+.top-level-menu a:hover { color: #000000; }
