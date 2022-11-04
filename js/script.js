@@ -129,7 +129,7 @@ function request(num){
         return buf;
 
     }
-    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), "p"+curPer+'.xlsx');
     
 }
 function setPer(num){

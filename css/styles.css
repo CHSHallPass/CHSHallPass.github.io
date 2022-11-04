@@ -149,3 +149,29 @@ body{
     line-height: 30px;
 }
 .top-level-menu a:hover { color: #000000; }
+
+.links{
+    text-align: center;
+    margin-top: 100px;
+}
+.links a{
+    background-color: #fff;
+    padding: 6px 10px 0px 10px;
+    outline: none;
+    border: none;
+    font-size: 100px;
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    cursor: pointer;
+}
+.about{
+    background-color: #007A33;
+    padding: 10px 200px 10px 200px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    color: #FBE122;
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    cursor: pointer;
+}
